@@ -1,4 +1,6 @@
 const express = require("express");
+const morgan = require(morgan);
+
 const app = express();
 
 let Movies = [
@@ -55,6 +57,8 @@ app.get("/movies", (req, res) => {
 });
 
 // USE requests
+
+app.use(morgan("common"));
 
 app.use("/documentation", express.static("public"));
 
