@@ -1,7 +1,6 @@
 const express = require("express");
-const morgan = require(morgan);
-
 const app = express();
+const morgan = require("morgan");
 
 let Movies = [
   {
@@ -46,6 +45,11 @@ let Movies = [
   },
 ];
 
+//Middelware
+app.use(morgan("common"));
+app.use(express.static("public"));
+
+//All Requests below
 // GET requests
 app.get("/", (req, res) => {
   res.send("Welcome to my movie API!");
@@ -53,21 +57,15 @@ app.get("/", (req, res) => {
 
 app.get("/movies", (req, res) => {
   res.json(Movies);
-  no;
 });
 
-// USE requests
-
-app.use(morgan("common"));
-
-app.use("/documentation", express.static("public"));
-
+//Error Request
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 }); //error middleware
 
-// listen for requests
+//Listen Request
 app.listen(8080, () => {
   console.log("Your app is listening on port 8080.");
 });
