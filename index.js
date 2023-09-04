@@ -1,11 +1,11 @@
-const express = require("express");
-      bodyparser = require("body-parser");
-      morgan = require("morgan");
-      uuid = require(uuid)
+const express = require("express"),
+      bodyParser = require("body-parser"),
+      morgan = require("morgan"),
+      uuid = require("uuid");
 
-const app = require('express');
+const app = ("express");
 
-app.(usebodyParser.json());
+app.use(bodyParser.json());
 
 let Users = [
 
@@ -43,7 +43,7 @@ let Movies = [
   {
     title: "Mulan",
     description: "Mulan is a 1998 American animated musical adventure film produced by Walt Disney Feature Animation for Walt Disney Pictures. Based on the Chinese legend of Hua Mulan, it is the 36th Disney animated feature film, and the ninth animated feature film produced and released during the Disney Renaissance. The film's plot takes place in China during an unspecified Imperial dynasty, where Fa Mulan, daughter of aged warrior Fa Zhou, impersonates a man to take her father's place during a general conscription to counter a Hun invasion.",
-    genre: "Animated"
+    genre: "Animated",
     director: "Tony Bancroft, Barry Cook",
     featured: "Ming-Na Wen, Eddie Murphy, BD Wong"
   },
@@ -89,7 +89,7 @@ app.use(morgan("common"));
 app.use(express.static("public"));
 
 //All Requests below
-// GET requests
+// Create Main Server 
 app.get("/", (req, res) => {
   res.send("Welcome to my movie API!");
 });
