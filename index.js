@@ -219,26 +219,39 @@ app.post("/users", (req, res) => {
 
     if (user) {
         user.favoriteMovies.push(movieTitle);
-        res.status(200).json(user)
+        res.status(200).send( "{movieTitle} has been added to ${ id }'s array");;
     } else {
         res.status(400).send("no such user")
     }
  })
 
-  //DELETE
- app.delete("/users/:id/:movieTitle", (req, res) => {
-    const { id, movieTitle } = req.params;
+//   //DELETE
+//  app.delete("/users/:id/:movieTitle", (req, res) => {
+//     const { id, movieTitle } = req.params;
 
-     let user = users.find( user => user.id == id);
+//      let user = users.find( user => user.id == id);
 
-    if (user) {
-        user.favoriteMovies = user.favoriteMovies.filer(title => !== movieTitle);
-        res.status(200).send('${movieName} has been removed from user ${id}/s array');
-    } else {
-        res.status(400).send("no such user")
-    }
- })
+//     if (user) {
+//         user.favoriteMovies = user.favoriteMovies.filter(title => !== movieTitle);
+//         res.status(200).send('${movieTitle} has been removed from user ${id}/s array');
+//     } else {
+//         res.status(400).send("no such user")
+//     }
+//  })
 
+//   //DELETE
+//  app.delete("/users/:id", (req, res) => {
+//     const { id } = req.params;
+
+//      let user = users.find( user => user.id == id);
+
+//     if (user) {
+//         users = users.filter( user => user.id !== id);
+//         res.status(200).send('user ${id} has been deleted');;
+//     } else {
+//         res.status(400).send("no such user")
+//     }
+//  })
 
 //READ Movies List 
 app.get("/movies", (req, res) => {
