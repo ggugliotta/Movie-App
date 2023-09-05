@@ -184,7 +184,20 @@ app.get("/", (req, res) => {
   res.send("Welcome to my movie API!");
 });
 
-//READ Mpvies List 
+//CREATE New Users
+app.post("/users", (req, res) => {
+  const newUser = req.body;
+
+  if (newUser.name) {
+    newUser.id = uuid.v4();
+    users.push(newUser);
+    res.status(201).json(newUser)
+  } else {
+      res.status(400).send("users need names")
+ })
+
+
+//READ Movies List 
 app.get("/movies", (req, res) => {
   res.status(200).json(Movies);
 });
