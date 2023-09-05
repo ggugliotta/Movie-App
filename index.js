@@ -68,7 +68,7 @@ let Movies = [
       "Bio": "Joel Rudolf Zwick (born January 11, 1942)[1] is an American film director, television director, and theater director. He worked on the television series Perfect Strangers, Full House, and Family Matters, and directed the films My Big Fat Greek Wedding, Second Sight, and Fat Albert.",
       "Birth": 1942
     },
-    "ImageUrl": "",
+    "ImageUrl": "https://m.media-amazon.com/images/M/MV5BNzcwOWU4NGEtYjUyMy00MDNlLThiN2MtYzFlMjk4Y2FhNjlmXkEyXkFqcGdeQXVyNjk1Njg5NTA@._V1_FMjpg_UX1000_.jpg",
     "Featured": true
   }
     {
@@ -80,10 +80,10 @@ let Movies = [
     },
     "Director": {
       "Name": "Tony Bancroft",
-      "Bio": "",
-      "Birth": 19
+      "Bio": "Tony Bancroft is an American animator and film director who frequently collaborates with Disney. He is the founder and owner of the faith-driven animation company Toonacious Family Entertainment. Tony currently serves as the Executive VP Creative Development and Production for DivideNine Animation Studios.",
+      "Birth": 1967
     },
-    "ImageUrl": "",
+    "ImageUrl": "https://lumiere-a.akamaihd.net/v1/images/p_mulan_20529_83d3893a.jpeg",
     "Featured": true
   }
     {
@@ -95,10 +95,10 @@ let Movies = [
     },
     "Director": {
       "Name": "Gregory Nava",
-      "Bio": "",
-      "Birth": 19
+      "Bio": "Gregory James Nava (born April 10, 1949) is an American film director, producer and screenwriter.",
+      "Birth": 1949
     },
-    "ImageUrl": "",
+    "ImageUrl": "https://upload.wikimedia.org/wikipedia/en/0/05/Selenathemovie.jpg",
     "Featured": true
   }
     {
@@ -109,11 +109,11 @@ let Movies = [
       "Description": "Space opera is a subgenre of science fiction that emphasizes space warfare, with use of melodramatic, risk-taking space adventures, relationships, and chivalric romance."
     },
     "Director": {
-      "Name": 
-      "Bio": "",
-      "Birth": 19
+      "Name": "George Lucas",
+      "Bio": "George Walton Lucas Jr. is an American filmmaker. Lucas is best known for creating the Star Wars and Indiana Jones franchises and founding Lucasfilm, LucasArts, Industrial Light & Magic, and THX. He served as chairman of Lucasfilm before selling it to The Walt Disney Company in 2012. Lucas is one of history's most financially successful filmmakers and has been nominated for four Academy Awards. Lucas personally directed or conceived 10 of the 100 highest-grossing movies at the North American box office, adjusted for ticket-price inflation. Lucas is considered to be one of the most significant figures of the 20th-century New Hollywood movement, and a pioneer of the modern blockbuster. Despite this he's remained an independent filmmaker away from Hollywood for most of his career.",
+      "Birth": 1944
     },
-    "ImageUrl": "",
+    "ImageUrl": "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/385C45162034D0D843A1DFE151986AA2C568643FD14A7B1FCE881F5393B24A56/scale?width=1200&aspectRatio=1.78&format=jpeg",
     "Featured": true
   }
     {
@@ -124,11 +124,11 @@ let Movies = [
       "Description": "In film and television, drama is a category or genre of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone.[1] Drama of this kind is usually qualified with additional terms that specify its particular super-genre, macro-genre, or micro-genre,[2] such as soap opera, police crime drama, political drama, legal drama, historical drama, domestic drama, teen drama, and comedy-drama (dramedy). "
     },
     "Director": {
-      "Name": "",
-      "Bio": "",
-      "Birth": 19
+      "Name": "Frank Capra",
+      "Bio": "Frank Russell Capra was an Italian-born American film director, producer, and screenwriter who became the creative force behind some of the major award-winning films of the 1930s and 1940s.",
+      "Birth": 1897
     },
-    "ImageUrl": "",
+    "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/25/It%27s_a_Wonderful_Life_%281946_poster%29.jpeg",
     "Featured": true
   }
     {
@@ -140,10 +140,10 @@ let Movies = [
     },
     "Director": {
       "Name": "Frank Capra",
-      "Bio": "",
-      "Birth": 19
+      "Bio": "Frank Russell Capra was an Italian-born American film director, producer, and screenwriter who became the creative force behind some of the major award-winning films of the 1930s and 1940s.",
+      "Birth": 1897
     },
-    "ImageUrl": "",
+    "ImageUrl": "https://s3.amazonaws.com/criterion-production/films/bc834199ef177e83604b93c31a1ad1a4/bWEA41YCQNEKPfVmws5oTnDP3FYcpa_large.jpg",
     "Featured": true
   }
     {
@@ -155,10 +155,10 @@ let Movies = [
     },
     "Director": {
       "Name": "Herbert Ross",
-      "Bio": "",
-      "Birth": 19
+      "Bio": "Herbert David Ross was an American actor, choreographer, director and producer who worked predominantly in theater and film. He was nominated for two Academy Awards and a Tony Award.He is known for directing musical and comedies such as Goodbye, Mr. Chips (1969), The Owl and the Pussycat (1970), Play It Again, Sam (1972), The Sunshine Boys, Funny Lady (both 1975), The Goodbye Girl (1977), California Suite (1978), and Pennies From Heaven (1981). His later films include Footloose (1984), and Steel Magnolias (1989). For the drama The Turning Point (1977) he received two Academy Award nominations for Best Picture and Best Director and received the Golden Globe Award for Best Director.",
+      "Birth": 1927
     },
-    "ImageUrl": "",
+    "ImageUrl": "https://m.media-amazon.com/images/M/MV5BZTVkNWM2YjgtYjRhNC00OWQ5LWFiMDAtYWI2MTM0ZDk1ODE3XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg",
     "Featured": true
   }
   
