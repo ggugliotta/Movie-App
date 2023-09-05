@@ -17,7 +17,6 @@ let users = [
     name: "Roman",
     favoriteMovie: ["Mulan"]
   }
-
 ];
 
 let movies = [
@@ -101,7 +100,7 @@ let movies = [
     "Description": "Selena is a 1997 American biographical musical drama film. It is based on the true story of Tejano music star Selena Quintanilla-Pérez, chronicling her rise to fame and death when she was murdered by Yolanda Saldívar at the age of 23.",
     "Genre": {
       "Name": "Drama",
-      "Description": "In film and television, drama is a category or genre of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone. Drama of this kind is usually qualified with additional terms that specify its particular super-genre, macro-genre, or micro-genre, such as soap opera, police crime drama, political drama, legal drama, historical drama, domestic drama, teen drama, and comedy-drama (dramedy). "
+      "Description": "In film and television, drama is a category or genre of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone. Drama of this kind is usually qualified with additional terms that specify its particular super-genre, macro-genre, or micro-genre, such as soap opera, police crime drama, political drama, legal drama, historical drama, domestic drama, teen drama, and comedy-drama (dramedy)."
     },
     "Director": {
       "Name": "Gregory Nava",
@@ -131,7 +130,7 @@ let movies = [
     "Description": "It/s a Wonderful Life is a 1946 American Christmas supernatural drama film. It is based on the short story and booklet The Greatest Gift self-published by Philip Van Doren Stern in 1943, which itself is loosely based on the 1843 Charles Dickens novella A Christmas Carol.[4] The film stars James Stewart as George Bailey, a man who has given up his personal dreams in order to help others in his community and whose thoughts of suicide on Christmas Eve bring about the intervention of his guardian angel, Clarence Odbody (Henry Travers). Clarence shows George all the lives he touched and what the world would be like if he did not exist.",
     "Genre": {
       "Name": "Drama",
-      "Description": "In film and television, drama is a category or genre of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone.[1] Drama of this kind is usually qualified with additional terms that specify its particular super-genre, macro-genre, or micro-genre,[2] such as soap opera, police crime drama, political drama, legal drama, historical drama, domestic drama, teen drama, and comedy-drama (dramedy). "
+      "Description": "In film and television, drama is a category or genre of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone.[1] Drama of this kind is usually qualified with additional terms that specify its particular super-genre, macro-genre, or micro-genre,[2] such as soap opera, police crime drama, political drama, legal drama, historical drama, domestic drama, teen drama, and comedy-drama (dramedy)."
     },
     "Director": {
       "Name": "Frank Capra",
@@ -215,7 +214,6 @@ app.post("/users", (req, res) => {
  //CREATE (Add movie to favorites list)
  app.post("/users/:id/:movieTitle", (req, res) => {
     const { id, movieTitle } = req.params;
-    const updatedUser = req.body;
 
      let user = users.find( user => user.id == id);
 
@@ -227,12 +225,19 @@ app.post("/users", (req, res) => {
     }
  })
 
+  //DELETE
+ app.delete("/users/:id/:movieTitle", (req, res) => {
+    const { id, movieTitle } = req.params;
 
+     let user = users.find( user => user.id == id);
 
-
-
-
-
+    if (user) {
+        user.favoriteMovies = user.favoriteMovies.filer(title => !== movieTitle);
+        res.status(200).send('${movieName} has been removed from user ${id}/s array');
+    } else {
+        res.status(400).send("no such user")
+    }
+ })
 
 
 //READ Movies List 
