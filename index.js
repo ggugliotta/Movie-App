@@ -196,7 +196,7 @@ app.post("/users", (req, res) => {
   }
  })
 
- //Update User Info
+ //Update User ID
  app.put("/users/:id", (req, res) => {
     const { id } = req.params;
     const updatedUser = req.body;
@@ -212,7 +212,7 @@ app.post("/users", (req, res) => {
  })
 
  //CREATE (Add movie to favorites list)
- app.post("/users/:id/:movieTitle", (req, res) => {
+ app.post("/users/id/:movieTitle", (req, res) => {
     const { id, movieTitle } = req.params;
 
      let user = users.find( user => user.id == id);
@@ -253,12 +253,12 @@ app.post("/users", (req, res) => {
 //     }
 //  })
 
-//READ Movies List 
+//READ (Return a list of ALL movies to the user)
 app.get("/movies", (req, res) => {
   res.status(200).json(Movies);
 });
 
-//READ Movie Title
+//READ Movie Information 
 app.get("/movies/:title", (req, res) => {
   const { title } = req.params;
   const movie = movies.find(movie => movie.Title === title);

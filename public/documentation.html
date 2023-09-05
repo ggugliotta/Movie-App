@@ -19,19 +19,108 @@
   </tr>
   <tr>
     <td>Return a list of ALL movies to the user</td>
-    <td>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user</td>
-    <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
-    <td>Return data about a director (bio, birth year, death year) by name</td>
-    <td>Allow new users to register</td>
-    <td>Allow users to update their user info (username)</td>
-    <td>Allow users to add a movie to their list of favorites (showing only a text that a movie has been added—more on this later)</td>
-    <td>Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed—more on this later)</td>
-    <td>Allow existing users to deregister (showing only a text that a user email has been removed—more on this later).</td>
+    <td>/movies</td>
+    <td>GET</td>
+    <td>None</td>
+    <td>A JSON object holding data about the movies. Example: 
+
+    </td>
   </tr>
   <tr>
-    <td>16</td>
-    <td>14</td>
-    <td>10</td>
+    <td>Return data (description, genre, director, image URL, whether it/’s featured or not) about a single movie by title to the user</td>
+    <td>/movies/:title</td>
+    <td>GET</td>
+    <td>None</td>
+    <td>A JSON object holding data about the movie information including: description, genre, director, image URL, and if it is featured. Example:
+      {
+        "Title": "Movie1"
+        "Description": "This movie is about XYZ"
+        "Genre": {
+          "Name": "Comedy"
+          "Description": "Comedies are defined as XYZ"
+        }
+        "Director": {
+          "Name": "Example Name"
+          "Bio": "Example Bio"
+          "Birth": 1996
+        }
+        "ImageUrl": "exampleurl.com/jpeg"
+        "Featured": false
+      }
+    </td>
+  </tr>
+    <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
+    <td>GET</td>
+    <td>/movies/genre/:genreName</td>
+    <td>None</td>
+    <td>A JSON object holding data about the movie genre</td>
+  </tr>
+  <tr>
+    <td>Return data about a director (bio, birth year, death year) by name</td>
+    <td>/movies/directors/:directorName</td>
+    <td>GET</td>
+    <td>None</td>
+    <td>A JSON object holding data about the movie director including name, bio, and birth date.</td>
+  </tr>
+  <tr>
+    <td>Allow new users to register</td>
+    <td>/users</td>
+    <td>POST</td>
+    <td>A JSON object holding data about the new user containing an ID, name, and favorite movie place holder. Example: 
+      {
+        id: 1,
+        name: user1,
+        favoriteMovie: []
+      }
+    </td>
+    <td>A Status Code (201) indicating that the registration was successful.</td>
+  </tr>
+  <tr>
+    <td>Allow users to update their user info (username)</td>
+    <td>/users/:id</td>
+    <td>PUT</td>
+    <td>A JSON object holding data about the new user containing an ID, name, and favorite movie place holder. Example: 
+      {
+        id: 1,
+        name: user1,
+        favoriteMovie: []
+      }</td>
+    <td>A Status Code (200) indicating that the registration was successful.</td>
+  </tr>
+    <td>Allow users to add a movie to their list of favorites (showing only a text that a movie has been added—more on this later)</td>
+    <td>/users/id/:movieTitle</td>
+    <td>POST</td>
+    <td>A JSON object holding data about the new user containing an ID, name, and favorite movie place holder. Example: 
+      {
+        id: 1,
+        name: user1,
+        favoriteMovie: []
+      }</td>
+    <td> A status code (200) sent to the console that lets you know that the movie title has been added to the user's array.
+    </td>
+  <tr>
+    <td>Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed—more on this later)</td>
+    <td>/users/id/:movieTitle</td>
+    <td>DELETE</td>
+    <td>A JSON object holding data about the new user containing an ID, name, and favorite movie place holder. Example: 
+      {
+        id: 1,
+        name: user1,
+        favoriteMovie: []
+      }</td>
+    <td>A status code (200) sent to the console that says that the movie title has been deleted from the user ID's array.
+  </tr>
+  <tr>
+    <td>Allow existing users to deregister (showing only a text that a user email has been removed—more on this later).</td>
+    <td>/users/:id</td>
+    <td>DELETE</td>
+    <td>A JSON object holding data about the new user containing an ID, name, and favorite movie place holder. Example: 
+      {
+        id: 1,
+        name: user1,
+        favoriteMovie: []
+      }</td>
+    <td>A status code (200) sent to the console that says that the user ID has been deleted or an error code that says no such user.</td>
   </tr>
 </table>
   
