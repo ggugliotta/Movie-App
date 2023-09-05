@@ -213,7 +213,17 @@ app.get("/movies/genre/:genreName", (req, res) => {
   }
 });
 
+//READ Movie Directors
+app.get("/movies/directors/:directorName", (req, res) => {
+  const { directorName } = req.params;
+  const director = movies.find(movie => movie.Director.Name === directorName).Director;
 
+  if (director) {
+      res.status(200).json(director)
+  } else {
+      res.status(400).send("no such director")
+  }
+});
 
 
 //Error Request
