@@ -6,11 +6,21 @@ const express = require("express"),
 
 app.use(bodyParser.json());
 
-let Users = [
+let users = [
+  {
+    id: 1, 
+    name: "Gabriella",
+    favoriteMovie: []
+  },
+  {
+    id: 2,
+    name: "Roman",
+    favoriteMovie: ["Mulan"]
+  }
 
 ];
 
-let Movies = [
+let movies = [
   {
     "Title": "Pride & Prejudice",
     "Description": "Pride & Prejudice is a 2005 romantic drama film directed by Joe Wright, in his feature directorial debut, and based on Jane Austen's 1813 novel of the same name. The film features five sisters from an English family of landed gentry as they deal with issues of marriage, morality and misconceptions.",
@@ -40,7 +50,7 @@ let Movies = [
     },
     "ImageUrl": "https://m.media-amazon.com/images/I/41DAuh5ebqL._AC_UF894,1000_QL80_.jpg",
     "Featured": true
-  }
+  },
     {
     "Title": "The Big Short",
     "Description": "The Big Short is a 2015 American biographical crime comedy-drama film.. It is based on the 2010 book The Big Short: Inside the Doomsday Machine by Michael Lewis showing how the 2007–2008 financial crisis was triggered by the United States housing bubble.",
@@ -55,7 +65,7 @@ let Movies = [
     },
     "ImageUrl": "https://flxt.tmsimg.com/assets/p12157971_p_v8_ae.jpg",
     "Featured": true
-  }
+  },
     {
     "Title": "My Big Fat Greek Wedding",
     "Description": "My Big Fat Greek Wedding is a 2002 romantic comedy film written by Nia Vardalos. It follows a young Greek-American woman who falls in love with a non-Greek and struggles to get her family to accept him while she comes to terms with her heritage and cultural identity.",
@@ -70,7 +80,7 @@ let Movies = [
     },
     "ImageUrl": "https://m.media-amazon.com/images/M/MV5BNzcwOWU4NGEtYjUyMy00MDNlLThiN2MtYzFlMjk4Y2FhNjlmXkEyXkFqcGdeQXVyNjk1Njg5NTA@._V1_FMjpg_UX1000_.jpg",
     "Featured": true
-  }
+  },
     {
     "Title": "Mulan",
     "Description": "Mulan is a 1998 American animated musical adventure film produced by Walt Disney Feature Animation for Walt Disney Pictures. Based on the Chinese legend of Hua Mulan, it is the 36th Disney animated feature film, and the ninth animated feature film produced and released during the Disney Renaissance. The film's plot takes place in China during an unspecified Imperial dynasty, where Fa Mulan, daughter of aged warrior Fa Zhou, impersonates a man to take her father's place during a general conscription to counter a Hun invasion.",
@@ -85,7 +95,7 @@ let Movies = [
     },
     "ImageUrl": "https://lumiere-a.akamaihd.net/v1/images/p_mulan_20529_83d3893a.jpeg",
     "Featured": true
-  }
+  },
     {
     "Title": "Selena",
     "Description": "Selena is a 1997 American biographical musical drama film. It is based on the true story of Tejano music star Selena Quintanilla-Pérez, chronicling her rise to fame and death when she was murdered by Yolanda Saldívar at the age of 23.",
@@ -100,7 +110,7 @@ let Movies = [
     },
     "ImageUrl": "https://upload.wikimedia.org/wikipedia/en/0/05/Selenathemovie.jpg",
     "Featured": true
-  }
+  },
     {
     "Title": "The Phantom Menace",
     "Description": "Star Wars: Episode I The Phantom Menace is a 1999 American epic space opera film. It is the fourth film in the Star Wars film series, the first film of the prequel trilogy and the first chronological chapter of the Skywalker Saga. Set 32 years before the original trilogy, (13 years before the formation of the Galactic Empire), during the era of the Galactic Republic, the plot follows Jedi Master Qui-Gon Jinn and his apprentice Obi-Wan Kenobi as they try to protect Queen Padmé Amidala of Naboo in hopes of securing a peaceful end to an interplanetary trade dispute. Joined by Anakin Skywalker—a young slave with unusually strong natural powers of the Force—they simultaneously contend with the mysterious return of the Sith.",
@@ -115,7 +125,7 @@ let Movies = [
     },
     "ImageUrl": "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/385C45162034D0D843A1DFE151986AA2C568643FD14A7B1FCE881F5393B24A56/scale?width=1200&aspectRatio=1.78&format=jpeg",
     "Featured": true
-  }
+  },
     {
     "Title": "It/s a Wonderful Life",
     "Description": "It/s a Wonderful Life is a 1946 American Christmas supernatural drama film. It is based on the short story and booklet The Greatest Gift self-published by Philip Van Doren Stern in 1943, which itself is loosely based on the 1843 Charles Dickens novella A Christmas Carol.[4] The film stars James Stewart as George Bailey, a man who has given up his personal dreams in order to help others in his community and whose thoughts of suicide on Christmas Eve bring about the intervention of his guardian angel, Clarence Odbody (Henry Travers). Clarence shows George all the lives he touched and what the world would be like if he did not exist.",
@@ -130,7 +140,7 @@ let Movies = [
     },
     "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/25/It%27s_a_Wonderful_Life_%281946_poster%29.jpeg",
     "Featured": true
-  }
+  },
     {
     "Title": "Arsenic and Old Lace",
     "Description": "Arsenic and Old Lace is a 1944 American screwball mystery black comedy film directed by Frank Capra and starring Cary Grant. The screenplay by Julius J. Epstein and Philip G. Epstein is based on Joseph Kesselring's 1941 play of the same name.",
@@ -145,7 +155,7 @@ let Movies = [
     },
     "ImageUrl": "https://s3.amazonaws.com/criterion-production/films/bc834199ef177e83604b93c31a1ad1a4/bWEA41YCQNEKPfVmws5oTnDP3FYcpa_large.jpg",
     "Featured": true
-  }
+  },
     {
     "Title": "Steel Magnolias",
     "Description": "Steel Magnolias is a 1989 American comedy-drama film directed by Herbert Ross and starring Academy Award winners Sally Field, Shirley MacLaine, and Olympia Dukakis with Dolly Parton, Daryl Hannah, and Julia Roberts.[4] The film is a film adaptation of Robert Harling's 1987 play of the same name about the bond a group of women share in a small-town Southern community, and how they cope with the death of one of their own.",
@@ -174,22 +184,37 @@ app.get("/", (req, res) => {
   res.send("Welcome to my movie API!");
 });
 
-//READ
+//READ Mpvies List 
 app.get("/movies", (req, res) => {
   res.status(200).json(Movies);
 });
 
-//READ
+//READ Movie Title
 app.get("/movies/:title", (req, res) => {
-  const {title} = req.params
-  const movie = movies.find(movie => movieTitle === title);
+  const { title } = req.params;
+  const movie = movies.find(movie => movie.Title === title);
 
-  if(movie) {
-    res.status(200).json(movie);
+  if (movie) {
+      res.status(200).json(movie)
   } else {
-      res.status(400).send('no such movie')
+      res.status(400).send("no such movie")
   }
 });
+
+//READ Movie Genre
+app.get("/movies/genre/:genreName", (req, res) => {
+  const { genreName } = req.params;
+  const genre = movies.find(movie => movie.Genre.Name === genreName).Genre;
+
+  if (genre) {
+      res.status(200).json(genre)
+  } else {
+      res.status(400).send("no such genre")
+  }
+});
+
+
+
 
 //Error Request
 app.use((err, req, res, next) => {
