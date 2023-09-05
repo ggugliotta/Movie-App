@@ -1,9 +1,8 @@
 const express = require("express"),
+      app = express(),
       bodyParser = require("body-parser"),
       morgan = require("morgan"),
       uuid = require("uuid");
-
-const app = ("express");
 
 app.use(bodyParser.json());
 
