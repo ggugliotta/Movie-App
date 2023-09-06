@@ -212,14 +212,14 @@ app.post("/users", (req, res) => {
  })
 
  //CREATE (Add movie to favorites list)
- app.post("/users/id/:movieTitle", (req, res) => {
+ app.post("/users/:id/:movieTitle", (req, res) => {
     const { id, movieTitle } = req.params;
 
      let user = users.find( user => user.id == id);
 
     if (user) {
         user.favoriteMovies.push(movieTitle);
-        res.status(200).send( "{movieTitle} has been added to ${ id }'s array");;
+        res.status(200).send( `${movieTitle} has been added to ${ id }'s array`);;
     } else {
         res.status(400).send("no such user")
     }
