@@ -39,7 +39,7 @@ let movies = [
     "Title": "Where the Heart Is",
     "Description": "Where the Heart Is is a 2000 American romantic drama film. The screenplay, written by Lowell Ganz and Babaloo Mandel, is based on the best-selling 1995 novel of the same name by Billie Letts. The film follows five years in the life of Novalee Nation, a pregnant 17-year-old who is abandoned by her boyfriend at a Walmart in a small Oklahoma town. She secretly moves into the store, where she eventually gives birth to her baby, which attracts media attention. With the help of friends, she makes a new life for herself in the town.",
     "Genre": {
-      "Name": "Romantic Drama",
+      "Name": "Romance",
       "Description": "Romance films involve romantic love stories recorded in visual media for broadcast in theatres or on television that focus on passion, emotion, and the affectionate romantic involvement of the main characters. Typically their journey through dating, courtship or marriage is featured."
     },
     "Director": {
@@ -218,40 +218,40 @@ app.post("/users", (req, res) => {
      let user = users.find( user => user.id == id);
 
     if (user) {
-        user.favoriteMovies.push(movieTitle);
+        user.favoriteMovie.push(movieTitle);
         res.status(200).send( `${movieTitle} has been added to ${ id }'s array`);;
     } else {
         res.status(400).send("no such user")
     }
  })
 
-//   //DELETE
-//  app.delete("/users/:id/:movieTitle", (req, res) => {
-//     const { id, movieTitle } = req.params;
+//DELETE
+ app.delete("/users/:id/:movieTitle", (req, res) => {
+    const { id, movieTitle } = req.params;
 
-//      let user = users.find( user => user.id == id);
+     let user = users.find( user => user.id == id);
 
-//     if (user) {
-//         user.favoriteMovies = user.favoriteMovies.filter(title => !== movieTitle);
-//         res.status(200).send('${movieTitle} has been removed from user ${id}/s array');
-//     } else {
-//         res.status(400).send("no such user")
-//     }
-//  })
+    if (user) {
+        user.favoriteMovie = user.favoriteMovie.filter(title => title != movieTitle);
+        res.status(200).send('${movieTitle} has been removed from user ${id}/s array');
+    } else {
+        res.status(400).send("no such user")
+    }
+ })
 
-//   //DELETE
-//  app.delete("/users/:id", (req, res) => {
-//     const { id } = req.params;
+  //DELETE
+ app.delete("/users/:id", (req, res) => {
+    const { id } = req.params;
 
-//      let user = users.find( user => user.id == id);
+     let user = users.find( user => user.id == id);
 
-//     if (user) {
-//         users = users.filter( user => user.id != id);
-//         res.status(200).send('user ${id} has been deleted');
-//     } else {
-//         res.status(400).send("no such user")
-//     }
-//  })
+    if (user) {
+        users = users.filter( user => user.id != id);
+        res.status(200).send('user ${id} has been deleted');
+    } else {
+        res.status(400).send("no such user")
+    }
+ })
 
 //READ (Return a list of ALL movies to the user)
 app.get("/movies", (req, res) => {
