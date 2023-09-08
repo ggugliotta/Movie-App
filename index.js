@@ -24,16 +24,20 @@ let movies = [
     "Title": "Pride & Prejudice",
     "Description": "Pride & Prejudice is a 2005 romantic drama film directed by Joe Wright, in his feature directorial debut, and based on Jane Austen's 1813 novel of the same name. The film features five sisters from an English family of landed gentry as they deal with issues of marriage, morality and misconceptions.",
     "Genre": {
-      "Name": "Romantic Drama",
+      "Name": "Romance",
       "Description": "Romance films involve romantic love stories recorded in visual media for broadcast in theatres or on television that focus on passion, emotion, and the affectionate romantic involvement of the main characters. Typically their journey through dating, courtship or marriage is featured."
     },
     "Director": {
       "Name": "Joe Wright",
       "Bio": "Joseph Wright (born 25 August 1972) is an English film director residing in Somerset, England. His motion pictures include the literary adaptations Pride & Prejudice (2005), Atonement (2007), Anna Karenina (2012), and Cyrano (2021), the action thriller Hanna (2011), Peter Pan origin story Pan (2015), and Darkest Hour (2017), a political drama following Winston Churchill during World War II nominated for Best Picture.",
-      "Birth": 1972
+      "Birth": 1972,
+      "Movies":"Pride & Prejudice, Atonement, Anna Karenia, Cyrano, Hanna, Pan, The Darkest Hour",
     },
     "ImageUrl": "https://upload.wikimedia.org/wikipedia/en/0/03/Prideandprejudiceposter.jpg",
-    "Featured": true
+    "Featured": true,
+    "Actors:":"Keira Knightly, Matthew MacFayden, Rosamund Pike, Simon Woods, Carey Mulligan",
+    "Release Year": 2005,
+    "Rating": "PG"
   },
     {
     "Title": "Where the Heart Is",
@@ -45,10 +49,14 @@ let movies = [
     "Director": {
       "Name": "Matt Williams",
       "Bio": "Matthew Williams (born April 18, 1951) is an American television producer, television writer, and professor.",
-      "Birth": 1951
+      "Birth": 1951,
+      "Movies": "Where the Heart Is, Walker Payne"
     },
     "ImageUrl": "https://m.media-amazon.com/images/I/41DAuh5ebqL._AC_UF894,1000_QL80_.jpg",
-    "Featured": true
+    "Featured": true,
+    "Actors:":"Natalie Portman, Ashley Judd, Stockard Channing, Sally Field, James Frain, Dylano Bruno, Joan Cusak",
+    "Release Year": "2000",
+    "Rating": "PG-13"
   },
     {
     "Title": "The Big Short",
@@ -60,25 +68,33 @@ let movies = [
     "Director": {
       "Name": "Adam McKay",
       "Bio": "Adam McKay (born April 17, 1968) is an American film director, producer, screenwriter, and comedian. McKay began his career as a head writer for the NBC sketch comedy show Saturday Night Live (SNL) from 1995 to 2001. Following his departure from SNL, he rose to fame in the 2000s for his collaborations with comedian Will Ferrell and co-wrote his comedy films Anchorman, Talladega Nights, and The Other Guys.",
-      "Birth": 1968
+      "Birth": 1968,
+      "Movies": "The Big Short, Don't Look Up, Vice, We the Economy: 20 Short Films You Can't Afford to Miss, SNL Shorts, Anchorman 2: The Legend Continues, Lifecasters, The Other Guys, Step Brothers, Talladega Nights: The Ballad of Ricky Bobby, Anchorman: The Legend of Ron Burgundy"
     },
     "ImageUrl": "https://flxt.tmsimg.com/assets/p12157971_p_v8_ae.jpg",
-    "Featured": true
+    "Featured": true,
+    "Actors:":"Christian Bale, Steve Carell, Ryan Gosling",
+    "Release Year": "2015",
+    "Rating": "R"
   },
     {
     "Title": "My Big Fat Greek Wedding",
     "Description": "My Big Fat Greek Wedding is a 2002 romantic comedy film written by Nia Vardalos. It follows a young Greek-American woman who falls in love with a non-Greek and struggles to get her family to accept him while she comes to terms with her heritage and cultural identity.",
     "Genre": {
-      "Name": "Romantic Drama",
+      "Name": "Romance",
       "Description": "Romance films involve romantic love stories recorded in visual media for broadcast in theatres or on television that focus on passion, emotion, and the affectionate romantic involvement of the main characters. Typically their journey through dating, courtship or marriage is featured."
     },
     "Director": {
       "Name": "Joel Zwick",
-      "Bio": "Joel Rudolf Zwick (born January 11, 1942)[1] is an American film director, television director, and theater director. He worked on the television series Perfect Strangers, Full House, and Family Matters, and directed the films My Big Fat Greek Wedding, Second Sight, and Fat Albert.",
-      "Birth": 1942
+      "Bio": "Joel Rudolf Zwick is an American film director, television director, and theater director. He worked on the television series Perfect Strangers, Full House, and Family Matters, and directed the films My Big Fat Greek Wedding, Second Sight, and Fat Albert.",
+      "Birth": 1942,
+      "Movies": "My Big Fat Greek Wedding, Fat Albert, The World According to Straw, Adventures in Babysitting, Little Darlings, America 2100"
     },
     "ImageUrl": "https://m.media-amazon.com/images/M/MV5BNzcwOWU4NGEtYjUyMy00MDNlLThiN2MtYzFlMjk4Y2FhNjlmXkEyXkFqcGdeQXVyNjk1Njg5NTA@._V1_FMjpg_UX1000_.jpg",
-    "Featured": true
+    "Featured": true,
+     "Actors:":"Nia Vardalos, John Corbett, Michael Constantine",
+    "Release Year": "2002",
+    "Rating": "PG"
   },
     {
     "Title": "Mulan",
@@ -90,10 +106,14 @@ let movies = [
     "Director": {
       "Name": "Tony Bancroft",
       "Bio": "Tony Bancroft is an American animator and film director who frequently collaborates with Disney. He is the founder and owner of the faith-driven animation company Toonacious Family Entertainment. Tony currently serves as the Executive VP Creative Development and Production for DivideNine Animation Studios.",
-      "Birth": 1967
+      "Birth": 1967,
+      "Movies": "Mulan"
     },
     "ImageUrl": "https://lumiere-a.akamaihd.net/v1/images/p_mulan_20529_83d3893a.jpeg",
-    "Featured": true
+    "Featured": true,
+    "Actors:":"Ming-Na Wen, Eddie Murphy, Chris Sanders",
+    "Release Year": "1998",
+    "Rating": "G"
   },
     {
     "Title": "Selena",
@@ -105,13 +125,17 @@ let movies = [
     "Director": {
       "Name": "Gregory Nava",
       "Bio": "Gregory James Nava (born April 10, 1949) is an American film director, producer and screenwriter.",
-      "Birth": 1949
+      "Birth": 1949,
+      "Movies": "Selena, The Journal of Diego Rodriguez Silva, The Confessions of Amans, El Norte, A Time of Destiny, My Family, Why Do Fools Fall In Love, Bordertown"
     },
     "ImageUrl": "https://upload.wikimedia.org/wikipedia/en/0/05/Selenathemovie.jpg",
-    "Featured": true
+    "Featured": true,
+     "Actors:":"Jennifer Lopez, Edward James Olmos, Jon Seda",
+    "Release Year": "1997",
+    "Rating": "PG"
   },
     {
-    "Title": "The Phantom Menace",
+    "Title": "Star Wars: Episode I - The Phantom Menace",
     "Description": "Star Wars: Episode I The Phantom Menace is a 1999 American epic space opera film. It is the fourth film in the Star Wars film series, the first film of the prequel trilogy and the first chronological chapter of the Skywalker Saga. Set 32 years before the original trilogy, (13 years before the formation of the Galactic Empire), during the era of the Galactic Republic, the plot follows Jedi Master Qui-Gon Jinn and his apprentice Obi-Wan Kenobi as they try to protect Queen Padmé Amidala of Naboo in hopes of securing a peaceful end to an interplanetary trade dispute. Joined by Anakin Skywalker—a young slave with unusually strong natural powers of the Force—they simultaneously contend with the mysterious return of the Sith.",
     "Genre": {
       "Name": "Space Opera",
@@ -120,10 +144,14 @@ let movies = [
     "Director": {
       "Name": "George Lucas",
       "Bio": "George Walton Lucas Jr. is an American filmmaker. Lucas is best known for creating the Star Wars and Indiana Jones franchises and founding Lucasfilm, LucasArts, Industrial Light & Magic, and THX. He served as chairman of Lucasfilm before selling it to The Walt Disney Company in 2012. Lucas is one of history's most financially successful filmmakers and has been nominated for four Academy Awards. Lucas personally directed or conceived 10 of the 100 highest-grossing movies at the North American box office, adjusted for ticket-price inflation. Lucas is considered to be one of the most significant figures of the 20th-century New Hollywood movement, and a pioneer of the modern blockbuster. Despite this he's remained an independent filmmaker away from Hollywood for most of his career.",
-      "Birth": 1944
+      "Birth": 1944,
+      "Movies": "THX 1138, American Graffiti, Star Wars: Episode IV - A New Hope, Star Wars: Episode I - The Phantom Menace, Star Wars: Episode II - Attack of the Clones, Star Wars: Episode III - Revenge of the Sith"
     },
     "ImageUrl": "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/385C45162034D0D843A1DFE151986AA2C568643FD14A7B1FCE881F5393B24A56/scale?width=1200&aspectRatio=1.78&format=jpeg",
-    "Featured": true
+    "Featured": true,
+    "Actors:":"Ewan McGregor, Liam Neeson, Natalie Portman",
+    "Release Year": "1999",
+    "Rating": "PG"
   },
     {
     "Title": "It/s a Wonderful Life",
@@ -135,10 +163,14 @@ let movies = [
     "Director": {
       "Name": "Frank Capra",
       "Bio": "Frank Russell Capra was an Italian-born American film director, producer, and screenwriter who became the creative force behind some of the major award-winning films of the 1930s and 1940s.",
-      "Birth": 1897
+      "Birth": 1897,
+      "Movies": "It/s a Wonderful Life, Arsenic and Old Lace, The Strong Man, Long Pants, For the Love of Mike, That Certain Thing, So This is Love, It Happened One Night, Mr. Smith Goes to Washington"
     },
     "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/25/It%27s_a_Wonderful_Life_%281946_poster%29.jpeg",
-    "Featured": true
+    "Featured": true,
+    "Actors:":"James Stewart, Donna Reed, Lionel Barrymore",
+    "Release Year": "1946",
+    "Rating": "PG"
   },
     {
     "Title": "Arsenic and Old Lace",
@@ -150,10 +182,14 @@ let movies = [
     "Director": {
       "Name": "Frank Capra",
       "Bio": "Frank Russell Capra was an Italian-born American film director, producer, and screenwriter who became the creative force behind some of the major award-winning films of the 1930s and 1940s.",
-      "Birth": 1897
+      "Birth": 1897,
+      "Movies": "It/s a Wonderful Life, Arsenic and Old Lace, The Strong Man, Long Pants, For the Love of Mike, That Certain Thing, So This is Love, It Happened One Night, Mr. Smith Goes to Washington"
     },
     "ImageUrl": "https://s3.amazonaws.com/criterion-production/films/bc834199ef177e83604b93c31a1ad1a4/bWEA41YCQNEKPfVmws5oTnDP3FYcpa_large.jpg",
-    "Featured": true
+    "Featured": true,
+     "Actors:":"Cary Grant, Priscilla Lane, Raymond Massey",
+    "Release Year": "1944",
+    "Rating": "Not Rated"
   },
     {
     "Title": "Steel Magnolias",
@@ -165,11 +201,15 @@ let movies = [
     "Director": {
       "Name": "Herbert Ross",
       "Bio": "Herbert David Ross was an American actor, choreographer, director and producer who worked predominantly in theater and film. He was nominated for two Academy Awards and a Tony Award.He is known for directing musical and comedies such as Goodbye, Mr. Chips (1969), The Owl and the Pussycat (1970), Play It Again, Sam (1972), The Sunshine Boys, Funny Lady (both 1975), The Goodbye Girl (1977), California Suite (1978), and Pennies From Heaven (1981). His later films include Footloose (1984), and Steel Magnolias (1989). For the drama The Turning Point (1977) he received two Academy Award nominations for Best Picture and Best Director and received the Golden Globe Award for Best Director.",
-      "Birth": 1927
+      "Birth": 1927,
+      "Movies": "Steel Magnolias, Footloose, True Colors, Undercover Blues, Boys on the Side",
     },
     "ImageUrl": "https://m.media-amazon.com/images/M/MV5BZTVkNWM2YjgtYjRhNC00OWQ5LWFiMDAtYWI2MTM0ZDk1ODE3XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg",
-    "Featured": true
-  }
+    "Featured": true,
+    "Actors:":"Shirley MacLaine, Olympia Dukakis, Sally Field",
+    "Release Year": "1989",
+    "Rating": "PG"
+  },
   
 ];
 
