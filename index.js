@@ -67,7 +67,7 @@ app.post("/users", (req, res) => {
     }
  })
 
-//DELETE
+//DELETE movie from user's favoriteMovie list
  app.delete("/users/:id/:movieTitle", (req, res) => {
     const { id, movieTitle } = req.params;
 
@@ -81,7 +81,7 @@ app.post("/users", (req, res) => {
     }
  })
 
-  //DELETE
+  //DELETE user
  app.delete("/users/:id", (req, res) => {
     const { id } = req.params;
 
@@ -95,12 +95,12 @@ app.post("/users", (req, res) => {
     }
  })
 
-//READ (Return a list of ALL movies to the user)
+//READ a list of ALL movies to the user
 app.get("/movies", (req, res) => {
   res.status(200).json(Movies);
 });
 
-//READ Movie Information 
+//READ a specific movie title
 app.get("/movies/:title", (req, res) => {
   const { title } = req.params;
   const movie = movies.find(movie => movie.Title === title);
@@ -112,7 +112,7 @@ app.get("/movies/:title", (req, res) => {
   }
 });
 
-//READ Movie Genre
+//READ a specific Movie Genre
 app.get("/movies/genre/:genreName", (req, res) => {
   const { genreName } = req.params;
   const genre = movies.find(movie => movie.Genre.Name === genreName).Genre;
@@ -124,7 +124,7 @@ app.get("/movies/genre/:genreName", (req, res) => {
   }
 });
 
-//READ Movie Directors
+//READ a specific Movie Director
 app.get("/movies/directors/:directorName", (req, res) => {
   const { directorName } = req.params;
   const director = movies.find(movie => movie.Director.Name === directorName).Director;
