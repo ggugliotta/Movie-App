@@ -1,8 +1,10 @@
 const express = require("express"),
-      app = express(),
-      bodyParser = require("body-parser"),
       morgan = require("morgan"),
+      app = express()
+      app.use(express.json());
+      app.use(express.urlencoded({ extended: true }));
       uuid = require("uuid");
+
 
 const mongoose = require('mongoose');
 const Models = require('./models.js');
@@ -10,12 +12,10 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 const Genres = Models.Genre;
-const Directors = Models.Directors;
+const Directors = Models.Director;
 
-mongoose.connect('mongodb://localhost:27012/gabriellaDB', { 
+mongoose.connect('mongodb://localhost:27017/gabriellaDB', { 
   useNewUrlParser: true, useUnifiedTopology: true });
-
-app.use(bodyParser.json());
 
 //Middelware
 app.use(morgan("common"));
@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 //READ (return JSON object [a list] of ALL movies to the user when at /movies
 app.get("/movies", async (req, res) => {
   await Movies.find()
-    .then((Movies) => {
+    .then((movies) => {
       res.status(200).json(movies);
     })
     .catch((err) => {
@@ -76,7 +76,7 @@ app.get("/genre/:Name", async (req, res) => {
 });
 
 
-//READ (return JSON object [data about a specific Movie Director including bio, birthday, movies] by name)
+// //READ (return JSON object [data about a specific Movie Director including bio, birthday, movies] by name)
 app.get("/director/:Name", async (req, res) => {
   await Directors.findOne({ Name: req.params.Name})
     .then((director) => {
