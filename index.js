@@ -98,11 +98,11 @@ app.get("/director/:Name", async (req, res) => {
   Email: String,
   Birthday: Date
 }*/
-app.post('/users', async (req, res) => {
-  await Users.findOne({ Username: req.body.Username })
+app.post('/users/:Name', async (req, res) => {
+  await Users.findOne({ Username: req.body.Name })
     .then((user) => {
       if (user) {
-        return res.status(400).send (req.body.Username + "already exists");
+        return res.status(400).send (req.body.Name + "already exists");
       } else {
         Users.create ({
             Name: req.body.Name,
@@ -190,8 +190,8 @@ app.post('/users', async (req, res) => {
      
 
   //DELETE (allows a user to deregister their account by username)
- app.delete("/users/:Username", async (req, res) => {
-    await Users.findOneAndRemove({ Username: req.params.Username })
+ app.delete("/users/:id", async (req, res) => {
+    await Users.findOneAndRemove({ Username: req.params.Id })
       .then((user) => {
         if (!user) {
           res.status(400).send(req.params.Username + "was not found");
