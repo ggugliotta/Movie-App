@@ -45,7 +45,7 @@
     </td>
   </tr>
   <tr>
-    <td>Return JSON object [a list] of all users to the console</td>
+    <td>Return JSON object (a list) of all users to the console</td>
     <td>/users</td>
     <td>GET</td>
     <td>None</td>
@@ -58,12 +58,13 @@
         "Birthday": "1995-01-06T00:00:00.000Z",
         "FavoriteMovies": [],
     }
+    <tr>
     </td>
-        <td>Return JSON object [a specific movie with data]</td>
+        <td>Return JSON object (a specific movie with data)</td>
     <td>/movies/:Title</td>
     <td>GET</td>
     <td>None</td>
-    <td>A JSON object holding data about the movie information including: description, genre, director, image URL, and if it is featured. Example:
+    <td>A JSON object holding data about the movie information (including: description, genre, director, image URL, and if it is featured). Example:
         {
           "Genre": {
             "Name": "Drama",
@@ -88,7 +89,8 @@
           }
     </td>
   </tr>
-    <td>Return data about a specific movie genre (name, description)</td>
+  <tr>
+    <td>Return data (name, description) about a specific movie genre.</td>
     <td>/genre/:Name</td>
     <td>GET</td>
     <td>None</td>
@@ -116,7 +118,7 @@
     </td>
   </tr>
   <tr>
-    <td>Allow new users to register</td>
+    <td>Allow new users to register.</td>
     <td>/Users/:name</td>
     <td>POST</td>
     <td>A JSON object holding data about the new user containing an ID, name, and favorite movie place holder. Example: 
@@ -131,7 +133,7 @@
     <td>A Status Code (201) indicating that the registration was successful.</td>
   </tr>
   <tr>
-    <td>Allow users to update their user info (username)</td>
+    <td>Allow users to update their user information.</td>
     <td>/users/:Username</td>
     <td>PUT</td>
     <td>A JSON object holding data about the new user containing an ID, name, and favorite movie place holder. Example: 
@@ -147,7 +149,7 @@
     </td>
     <td>A Status Code (200) indicating that the registration was successful.</td>
   </tr>
-    <td>Allow users to add a movie to their list of favorites (showing only a text that a movie has been added—more on this later)</td>
+    <td>Allow users to add a movie to their list of favorites</td>
     <td>/users/:Username/movies/:MOVIEID</td>
     <td>POST</td>
     <td>A JSON object with user updated information. Example: "FavoriteMovies": ["64fb5845e6a86f94b742a245"],
@@ -155,14 +157,14 @@
     <td> A status code (200) sent to the console that lets you know that the movie title has been added to the user's array.
     </td>
   <tr>
-    <td>Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed—more on this later)</td>
+    <td>Allow users to remove a movie from their list of favorites</td>
     <td>/movies/:Title</td>
     <td>DELETE</td>
     <td>A notification that says "Title was deleted" Example: "Selena was deleted."</td>
     <td>A status code (200) sent to the console that says that the movie title has been deleted from the user ID's array.
   </tr>
   <tr>
-    <td>Allow existing users to deregister (showing only a text that a user email has been removed—more on this later).</td>
+    <td>Allow existing users to deregister.</td>
     <td>/users/:id</td>
     <td>DELETE</td>
     <td>A notification "username was deleted". Example: "Ilovemovies was deleted."
