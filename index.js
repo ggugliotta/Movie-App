@@ -150,7 +150,7 @@ app.post('/users', async (req, res) => {
    },
    { returnDocument: "after"} //returns updated document
    ).then(updatedUser => {
-    if (!updatedUser) => {
+    if (!updatedUser) {
       return res.status(500).send(req.body.Username + ' not found');
     } else {
       res.json(updatedUser);
