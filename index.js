@@ -18,6 +18,11 @@ mongoose.connect('mongodb://localhost:27017/gabriellaDB', {
 //Middelware
 app.use(morgan("common"));
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({extended: true }));
+
+let auth = require("./auth")(app);
+const passport = require("passport");
+require("./passport");
 
 //All Endpoint Requests below
 // CREATE (default text response when at Main Server /)
