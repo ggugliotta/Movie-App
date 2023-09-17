@@ -18,7 +18,6 @@ mongoose.connect('mongodb://localhost:27017/gabriellaDB', {
 //Middelware
 app.use(morgan("common"));
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({extended: true }));
 
 let auth = require("./auth")(app);
 const passport = require("passport");
@@ -31,13 +30,13 @@ app.get("/", (req, res) => {
 });
 
 //READ (return JSON object [a list] of ALL movies to the user when at /movies
-app.get("/movies", async (req, res) => {
+app.get("/movies", passport.authenticate("jwt", { session: false }), async (req, res) => {
   await Movies.find()
     .then((movies) => {
-      res.status(200).json(movies);
+      res.status(201).json(movies);
     })
     .catch((err) => {
-      console.error(err);
+      console.error(error);
       res.status(500).send('Error:' + err);
     });
 });
@@ -141,7 +140,12 @@ app.post('/users', async (req, res) => {
   Email: String (required),
   Birthday: Date
  }*/
- app.put("/users/:Username", async (req, res) => {
+ app.put("/users/:Username", passport.authenticate("jwt", {session: false }), async (req, res) => {
+  // CONDITION TO CHECK ADDED HERE 
+  if(req.user.Username !== req.params.Username){
+    return res.status(400).send("Permission denied");
+  }
+  // CONDITION ENDS
    await Users.findOneAndUpdate (
     { Username: req.params.Username },
     {

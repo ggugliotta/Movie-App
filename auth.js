@@ -28,7 +28,7 @@ const jwt = require("jsonwebtoken"),
           if (error) {
             res.send(error);
           }
-          let token = generateJWToken(user.toJSON());
+          let token = generateJWTToken(user.toJSON());
           return res.json({ user, token });
         });
       }) (req, res);
