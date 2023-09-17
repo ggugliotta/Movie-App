@@ -42,7 +42,7 @@ app.get("/movies", passport.authenticate("jwt", { session: false }), async (req,
 });
 
 //READ (return JSON object [a list] of ALL users to the console when at /users 
- app.get("/users", passport.authenticate("jwt", { session: false }), function (req, res) {
+ app.get("/users", function (req, res) {
   Users.find()
     .then(function (users) {
        res.status(201).json(users);
