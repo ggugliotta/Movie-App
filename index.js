@@ -171,7 +171,7 @@ app.post('/users', async (req, res) => {
   
  //CREATE (allows users to add movie to user's favoriteMovie list)
  app.post('/users/:Username/movies/:MOVIEID', passport.authenticate("jwt", { session: false }), async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.body.Username }, {
+  await Users.findOneAndUpdate({ Username: req.params.Username }, {
      $push: { FavoriteMovies: req.params.MOVIEID }
     },
     { new: true }) //This line makes sure that the updated document is returned
