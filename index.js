@@ -21,13 +21,15 @@ mongoose.connect('mongodb://localhost:27017/gabriellaDB', {
 app.use(morgan("common"));
 app.use(express.static("public"));
 
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+const cors = require("cors");
+
+let allowedOrigins = ['http://localhost:8080', 'https://moviesapi-zy5e.onrender.com'];
 
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
     if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
-      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      let message = 'The CORS policy for this application does not allow access from origin ' + origin;
       return callback(new Error(message ), false);
     }
     return callback(null, true);
@@ -57,7 +59,7 @@ app.get("/movies", passport.authenticate("jwt", { session: false }), async (req,
 });
 
 //READ (return JSON object [a list] of ALL users to the console when at /users 
- app.get("/users", passport.authentication("jwt", { session: false }), function (req, res) {
+ app.get("/users", passport.authenticate("jwt", { session: false }), function (req, res) {
   Users.find()
     .then(function (users) {
        res.status(201).json(users);
