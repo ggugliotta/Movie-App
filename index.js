@@ -174,11 +174,29 @@ app.post('/users',
   Email: String (required),
   Birthday: Date
  }*/
- app.put("/users/:Username", passport.authenticate("jwt", {session: false }), async (req, res) => {
+ app.put("/users/:Username", passport.authenticate("jwt", {session: false }), 
+  // Validation logic here for a request
+   [
+    check("Name", "Name is required").isLength({ min: 5}),
+    check("Name", "Name contains non alphanumeric characters - not allowed.").isAlphanumeric(),
+    check("Username", "Username is required").isLength({ min: 5}),
+    check("Username", "Username contains non alphanumeric characters - not allowed.").isAlphanumeric(),
+    check("Password", "Password is required").not().isEmpty(),
+    check("Email", "Email does not appear to be valid").isEmail()
+  ], async (req, res) => {
+    
   // CONDITION TO CHECK ADDED HERE 
   if(req.user.Username !== req.params.Username){
     return res.status(400).send("Permission denied");
   }
+
+  // check the validation object for errors
+  let errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+
   // CONDITION ENDS
    await Users.findOneAndUpdate (
     { Username: req.params.Username },
