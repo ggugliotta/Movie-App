@@ -14,8 +14,11 @@ const Users = Models.User;
 
 const { check, validationResult } = require("express-validator");
 
-mongoose.connect('mongodb://localhost:27017/gabriellaDB', { 
-  useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect('mongodb://localhost:27017/gabriellaDB', { 
+ // useNewUrlParser: true, useUnifiedTopology: true });
+
+ mongoose.connect('mongodb+srv://gabriellagugliotta96:eKdj6eFKoCf66EWj@moviesdb.bf3pu0k.mongodb.net/gabriellaDB?retryWrites=true&w=majority&appName=AtlasApp', { 
+ useNewUrlParser: true, useUnifiedTopology: true });
 
 //Middelware
 app.use(morgan("common"));
