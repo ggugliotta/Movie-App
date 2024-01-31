@@ -43,7 +43,7 @@ app.use(express.static("public"));
  */
 const cors = require("cors");
 let allowedOrigins = ['http://localhost:8080', 'https://moviesapi-zy5e.onrender.com',
-  'http://localhost:1234', 'https://flickette.netlify.app', 'https://localhost:4200'];
+  'http://localhost:1234', 'https://flickette.netlify.app', 'https://localhost:4200', 'http://localhost:8080/myFlix-Angular-client'];
 
 app.use(cors({
   origin: (origin, callback) => {
