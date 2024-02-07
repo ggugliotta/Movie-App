@@ -1,12 +1,12 @@
 const express = require("express"),
   morgan = require("morgan"),
-  app = express()
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
-  uuid = require("uuid");
+  app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+uuid = require("uuid");
 
-const mongoose = require('mongoose');
-const Models = require('./models.js');
+const mongoose = require("mongoose");
+const Models = require("./models.js");
 
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -19,7 +19,7 @@ const { check, validationResult } = require("express-validator");
  */
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 /**
@@ -42,19 +42,30 @@ app.use(express.static("public"));
  * @param {Object} corsOptions - CORS configuration object.
  */
 const cors = require("cors");
-let allowedOrigins = ['http://localhost:8080', 'https://moviesapi-zy5e.onrender.com',
-  'http://localhost:1234', 'https://flickette.netlify.app', 'https://localhost:4200', 'http://localhost:8080/myFlix-Angular-client'];
+let allowedOrigins = [
+  "http://localhost:8080",
+  "https://moviesapi-zy5e.onrender.com",
+  "http://localhost:1234",
+  "https://flickette.netlify.app",
+  "https://localhost:4200",
+  "http://localhost:8080/myFlix-Angular-client",
+  "https://master--angularflickette.netlify.app",
+];
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      let message = 'The CORS policy for this application does not allow access from origin ' + origin;
-      return callback(new Error(message), false);
-    }
-    return callback(null, true);
-  }
-}));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        let message =
+          "The CORS policy for this application does not allow access from origin " +
+          origin;
+        return callback(new Error(message), false);
+      }
+      return callback(null, true);
+    },
+  })
+);
 
 /**
  * Authentication module setup.
@@ -80,32 +91,36 @@ app.get("/", (req, res) => {
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
  */
-app.get("/movies", passport.authenticate("jwt", { session: false }), async (req, res) => {
-  await Movies.find()
-  .then((movies) => {
-    res.status(201).json(movies);
-  })
-  .catch((err) => {
-    console.error(error);
-    res.status(500).send('Error:' +err);
-  });
-});
+app.get(
+  "/movies",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    await Movies.find()
+      .then((movies) => {
+        res.status(201).json(movies);
+      })
+      .catch((err) => {
+        console.error(error);
+        res.status(500).send("Error:" + err);
+      });
+  }
+);
 
-//READ (return JSON object [a list] of ALL users to the console when at /users 
- app.get("/users", function (req, res) {
+//READ (return JSON object [a list] of ALL users to the console when at /users
+app.get("/users", function (req, res) {
   Users.find()
     .then(function (users) {
-       res.status(201).json(users);
-     })
+      res.status(201).json(users);
+    })
     .catch(function (err) {
       console.error(err);
       res.status(500).send("Error: " + err);
-  });
+    });
 });
 
 //READ (return JSON object [a specific movie title with data including description, genre, ,director, image URL, featured] to the user)
 app.get("/movies/:Title", async (req, res) => {
-  await Movies.findOne({ Title: req.params.Title})
+  await Movies.findOne({ Title: req.params.Title })
     .then((movie) => {
       res.status(200).json(movie);
     })
@@ -117,29 +132,28 @@ app.get("/movies/:Title", async (req, res) => {
 
 //READ a specific movie genre (description by name/title e.g. "Pride & Prejudice")
 app.get("/genre/:Name", async (req, res) => {
-  await Movies.findOne({ 'Genre.Name': req.params.Name})
+  await Movies.findOne({ "Genre.Name": req.params.Name })
     .then((movie) => {
       res.status(200).json(movie.Genre);
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send('No such genre:' + err);
+      res.status(500).send("No such genre:" + err);
     });
 });
 
-
 // //READ (return JSON object [data about a specific Movie Director including bio, birthday, movies] by name)
 app.get("/director/:Name", async (req, res) => {
-  await Movies.findOne({ 'Director.Name': req.params.Name})
+  await Movies.findOne({ "Director.Name": req.params.Name })
     .then((movie) => {
       if (movie) {
         return res.status(200).json(movie.Director);
-    }
-    res.status(400).json('No such director');
-  })
-  .catch((err) => {
-    console.error(err);
-      res.status(500).send('No such director:' + err);
+      }
+      res.status(400).json("No such director");
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("No such director:" + err);
     });
 });
 
@@ -153,55 +167,63 @@ app.get("/director/:Name", async (req, res) => {
   Email: String,
   Birthday: Date
 }*/
-app.post('/users', 
-// Validation logic here for request
+app.post(
+  "/users",
+  // Validation logic here for request
   [
-    check("Name", "Name is required").isLength({ min: 5}),
-    check("Name", "Name contains non alphanumeric characters - not allowed.").isAlphanumeric(),
-    check("Username", "Username is required").isLength({ min: 5}),
-    check("Username", "Username contains non alphanumeric characters - not allowed.").isAlphanumeric(),
+    check("Name", "Name is required").isLength({ min: 5 }),
+    check(
+      "Name",
+      "Name contains non alphanumeric characters - not allowed."
+    ).isAlphanumeric(),
+    check("Username", "Username is required").isLength({ min: 5 }),
+    check(
+      "Username",
+      "Username contains non alphanumeric characters - not allowed."
+    ).isAlphanumeric(),
     check("Password", "Password is required").not().isEmpty(),
-    check("Email", "Email does not appear to be valid").isEmail()
-  ], async (req, res) => {
+    check("Email", "Email does not appear to be valid").isEmail(),
+  ],
+  async (req, res) => {
+    // check the validation object for errors
+    let errors = validationResult(req);
 
-// check the validation object for errors
-  let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
 
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
-
-  let hashedPassword = Users.hashPassword(req.body.Password);
-  await Users.findOne({ Username: req.body.Username }) //Search to see if a user with the requested username already exists 
-    .then((user) => {
-      if (user) {
-      //if the user is found, send a response that it already exists 
-        return res.status(400).send (req.body.Name + "already exists");
-      } else {
-        Users.create ({
+    let hashedPassword = Users.hashPassword(req.body.Password);
+    await Users.findOne({ Username: req.body.Username }) //Search to see if a user with the requested username already exists
+      .then((user) => {
+        if (user) {
+          //if the user is found, send a response that it already exists
+          return res.status(400).send(req.body.Name + "already exists");
+        } else {
+          Users.create({
             Name: req.body.Name,
             Username: req.body.Username,
             Password: hashedPassword,
             Email: req.body.Email,
-            Birthday: req.body.Birthday
+            Birthday: req.body.Birthday,
           })
-          .then ((user) => { 
-            res.status(201).json(user);
-          })
-          .catch ((error) => {
-            console.error(error);
-            res.status(500).send("Error:" + error);
-          });
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send('Error: ' + error);
-    });
-});
+            .then((user) => {
+              res.status(201).json(user);
+            })
+            .catch((error) => {
+              console.error(error);
+              res.status(500).send("Error:" + error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send("Error: " + error);
+      });
+  }
+);
 
- //UPDATE allows a user to update their info, by username
- /* We'll expect JSON in this format
+//UPDATE allows a user to update their info, by username
+/* We'll expect JSON in this format
  {
   Name: String (required),
   Username: String (required),
@@ -209,86 +231,105 @@ app.post('/users',
   Email: String (required),
   Birthday: Date
  }*/
- app.put("/users/:Username", passport.authenticate("jwt", {session: false }), 
+app.put(
+  "/users/:Username",
+  passport.authenticate("jwt", { session: false }),
   // Validation logic here for a request
-   [
-    check("Name", "Name is required").isLength({ min: 5}),
-    check("Name", "Name contains non alphanumeric characters - not allowed.").isAlphanumeric(),
-    check("Username", "Username is required").isLength({ min: 5}),
-    check("Username", "Username contains non alphanumeric characters - not allowed.").isAlphanumeric(),
+  [
+    check("Name", "Name is required").isLength({ min: 5 }),
+    check(
+      "Name",
+      "Name contains non alphanumeric characters - not allowed."
+    ).isAlphanumeric(),
+    check("Username", "Username is required").isLength({ min: 5 }),
+    check(
+      "Username",
+      "Username contains non alphanumeric characters - not allowed."
+    ).isAlphanumeric(),
     check("Password", "Password is required").not().isEmpty(),
-    check("Email", "Email does not appear to be valid").isEmail()
-  ], async (req, res) => {
-    
-  // CONDITION TO CHECK ADDED HERE 
-  if(req.user.Username !== req.params.Username){
-    return res.status(400).send("Permission denied");
+    check("Email", "Email does not appear to be valid").isEmail(),
+  ],
+  async (req, res) => {
+    // CONDITION TO CHECK ADDED HERE
+    if (req.user.Username !== req.params.Username) {
+      return res.status(400).send("Permission denied");
+    }
+
+    // check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+    // CONDITION ENDS
+    await Users.findOneAndUpdate(
+      { Username: req.params.Username },
+      {
+        $set: {
+          Name: req.body.Name,
+          Username: req.body.Username,
+          Password: req.body.Password,
+          Email: req.body.Email,
+          Birthday: req.body.Birthday,
+        },
+      },
+      { returnDocument: "after" } //returns updated document
+    )
+      .then((updatedUser) => {
+        if (!updatedUser) {
+          return res.status(500).send(req.body.Username + " not found");
+        } else {
+          res.json(updatedUser);
+        }
+      })
+      .catch((error) => {
+        res.status(500).send("Error:" + error);
+      });
   }
+);
 
-  // check the validation object for errors
-  let errors = validationResult(req);
-
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
-
-  // CONDITION ENDS
-   await Users.findOneAndUpdate (
+//CREATE (allows users to add movie to user's favoriteMovie list)
+app.post("/users/:Username/movies/:MOVIEID", async (req, res) => {
+  await Users.findOneAndUpdate(
     { Username: req.params.Username },
     {
-     $set: {
-       Name: req.body.Name,
-       Username: req.body.Username,
-       Password: req.body.Password,
-       Email: req.body.Email,
-       Birthday: req.body.Birthday
-     },
-   },
-   { returnDocument: "after"} //returns updated document
-   ).then(updatedUser => {
-    if (!updatedUser) {
-      return res.status(500).send(req.body.Username + ' not found');
-    } else {
-      res.json(updatedUser);
-    }
-  }).catch(error => {
-    res.status(500).send("Error:" + error);
-  })
- });
-  
- //CREATE (allows users to add movie to user's favoriteMovie list)
- app.post('/users/:Username/movies/:MOVIEID', async (req, res) => {
-  await Users.findOneAndUpdate({ Username: req.params.Username }, {
-     $push: { FavoriteMovies: req.params.MOVIEID }
+      $push: { FavoriteMovies: req.params.MOVIEID },
     },
-    { new: true }) //This line makes sure that the updated document is returned
+    { new: true }
+  ) //This line makes sure that the updated document is returned
     .then((updatedUser) => {
       res.json(updatedUser);
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send('Error: ' + err);
+      res.status(500).send("Error: " + err);
     });
-  });
+});
 
 //DELETE (allows users to remove movie from user's favoriteMovie list)
- app.delete("/users/:Username/movies/:MovieID", async (req, res) => {
-    await Users.findOneAndUpdate({Username: req.params.Username}, {
-      $pull: { FavoriteMovies: req.params.MovieID }
+app.delete("/users/:Username/movies/:MovieID", async (req, res) => {
+  await Users.findOneAndUpdate(
+    { Username: req.params.Username },
+    {
+      $pull: { FavoriteMovies: req.params.MovieID },
     },
-    { new: true }) //This line makes sure that the updated document is returned
+    { new: true }
+  ) //This line makes sure that the updated document is returned
     .then((updatedUser) => {
       res.json(updatedUser);
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send('Error: ' + err);
+      res.status(500).send("Error: " + err);
     });
- });
+});
 
-
-  //DELETE (allows a user to deregister their account by username)
- app.delete("/users/:Username", passport.authenticate("jwt", { session: false }), async (req, res) => {
+//DELETE (allows a user to deregister their account by username)
+app.delete(
+  "/users/:Username",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
     await Users.findOneAndRemove({ Username: req.params.Username })
       .then((user) => {
         if (!user) {
@@ -301,7 +342,8 @@ app.post('/users',
         console.error(err);
         res.status(500).send("Error: " + err);
       });
-   });
+  }
+);
 
 /**
  * Express endpoint to serve as an error handler middleware.
@@ -325,4 +367,3 @@ const port = process.env.PORT || 8080;
 app.listen(port, "0.0.0.0", () => {
   console.log("Listening on Port " + port);
 });
-
