@@ -49,7 +49,7 @@ let allowedOrigins = [
   "https://flickette.netlify.app",
   "https://localhost:4200",
   "http://localhost:8080/myFlix-Angular-client",
-  "https://master--angularflickette.netlify.app",
+  "https://master--angularflickette.netlify.app/:0",
 ];
 
 app.use(
