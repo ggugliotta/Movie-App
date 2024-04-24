@@ -209,8 +209,9 @@ app.post(
       });
 /*     } else {
       return res.status(422).json({ errors: errors.array() });
-    }
-  } */
+    } 
+*/
+  } 
 );
 
 //UPDATE allows a user to update their info, by username
