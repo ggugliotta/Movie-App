@@ -167,8 +167,8 @@ app.get("/director/:Name", async (req, res) => {
 app.post(
   "/users",
   // Validation logic here for request
-  [
-    check("Name", "Name is required").isLength({ min: 5 }),
+  /*  [
+    check("Name", "Name is required"),
     check(
       "Name",
       "Name contains non alphanumeric characters - not allowed."
@@ -180,42 +180,37 @@ app.post(
     ).isAlphanumeric(),
     check("Password", "Password is required").not().isEmpty(),
     check("Email", "Email does not appear to be valid").isEmail(),
-  ],
+  ], */
   async (req, res) => {
     // check the validation object for errors
     let errors = validationResult(req);
 
     if (errors.isEmpty()) {
       let hashedPassword = Users.hashPassword(req.body.Password);
-      await Users.findOne({ Username: req.body.Username })
-        .then((user) => {
-          if (user) {
-            return res.status(400).send(req.body.Username + "already exists");
-          } else {
-            Users.create({
-              Name: req.body.Name,
-              Username: req.body.Username,
-              Password: hashedPassword,
-              Email: req.body.Email,
-              Birthday: req.body.Birthday,
+      await Users.findOne({ Username: req.body.Username }).then((user) => {
+        if (user) {
+          return res.status(400).send(req.body.Username + "already exists");
+        } else {
+          Users.create({
+            Name: req.body.Name,
+            Username: req.body.Username,
+            Password: hashedPassword,
+            Email: req.body.Email,
+            Birthday: req.body.Birthday,
+          })
+            .then((user) => {
+              res.status(201).json(user);
             })
-              .then((user) => {
-                res.status(201).json(user);
-              })
-              .catch((error) => {
-                console.error(error);
-                res.status(500).send("Error:" + error);
-              });
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-          res.status(500).send("Error: " + error);
-        });
-    } else {
+            .catch((error) => {
+              console.error(error);
+              res.status(500).send("Error:" + error);
+            });
+        }
+      });
+/*     } else {
       return res.status(422).json({ errors: errors.array() });
     }
-  }
+  } */
 );
 
 //UPDATE allows a user to update their info, by username
