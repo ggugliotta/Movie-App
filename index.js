@@ -154,54 +154,6 @@ app.get("/director/:Name", async (req, res) => {
     });
 });
 
-//READ (return JSON object [data about a specific user including
-//username, password, email, birthday, favorite movies] by username)
-app.post(
-  "/users/:Username",
-  // Validation logic here for request
-  [
-    check("Username", "Username is required").not().isEmpty(),
-    check("Password", "Password is required").not().isEmpty(),
-  ],
-  async (req, res) => {
-    // Check the validation object for errors
-    let errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-
-    // Extract username and password from request body
-    const { Username, Password } = req.body;
-
-    // Lookup user in the database by username
-    await Users.findOne({ Username: req.body.Username })
-      .then((user) => {
-        if (!user) {
-          // If the user is not found, send a response indicating invalid credentials
-          return res.status(400).send("Invalid username or password");
-        }
-
-        // Compare the provided password with the hashed password stored in the database
-        if (!user.validatePassword(Password)) {
-          // If passwords don't match, send a response indicating invalid credentials
-          return res.status(400).send("Invalid username or password");
-        }
-
-        // If username and password are valid, generate a JWT token
-        const token = generateJWTToken(user);
-
-        // Return the user and token in the response
-        res.status(200).json({ user, token });
-      })
-      .catch((error) => {
-        // Handle any errors that occur during the database lookup
-        console.error(error);
-        res.status(500).send("Error: " + error);
-      });
-  }
-);
-
 //CREATE (New user account, allow users to register)
 /* Expect JSON in this format
 {
