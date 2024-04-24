@@ -45,13 +45,8 @@ const cors = require("cors");
 let allowedOrigins = [
   "http://localhost:8080",
   "https://moviesapi-zy5e.onrender.com",
-  "http://localhost:1234",
   "https://flickette.netlify.app",
-  "https://localhost:4200",
-  "http://localhost:8080/myFlix-Angular-client",
-  "https://master--angularflickette.netlify.app/:0",
   "https://ggugliotta.github.io",
-  "https://main--flickette.netlify.app",
 ];
 
 app.use(
@@ -109,7 +104,7 @@ app.get(
 );
 
 //READ (return JSON object [a list] of ALL users to the console when at /users
-app.get("/users", function (req, res) {
+/* app.get("/users", function (req, res) {
   Users.find()
     .then(function (users) {
       res.status(201).json(users);
@@ -118,7 +113,7 @@ app.get("/users", function (req, res) {
       console.error(err);
       res.status(500).send("Error: " + err);
     });
-});
+}); */
 
 //READ (return JSON object [a specific movie title with data including description, genre, ,director, image URL, featured] to the user)
 app.get("/movies/:Title", async (req, res) => {
@@ -199,7 +194,7 @@ app.post(
       .then((user) => {
         if (user) {
           //if the user is found, send a response that it already exists
-          return res.status(400).send(req.body.Name + "already exists");
+          return res.status(400).send(req.body.Username + "already exists");
         } else {
           Users.create({
             Name: req.body.Name,
