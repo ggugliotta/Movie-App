@@ -139,7 +139,7 @@ app.get("/genre/:Name", async (req, res) => {
     });
 });
 
-// //READ (return JSON object [data about a specific Movie Director including bio, birthday, movies] by name)
+//READ (return JSON object [data about a specific Movie Director including bio, birthday, movies] by name)
 app.get("/director/:Name", async (req, res) => {
   await Movies.findOne({ "Director.Name": req.params.Name })
     .then((movie) => {
@@ -153,6 +153,54 @@ app.get("/director/:Name", async (req, res) => {
       res.status(500).send("No such director:" + err);
     });
 });
+
+//READ (return JSON object [data about a specific user including
+//username, password, email, birthday, favorite movies] by username)
+app.post(
+  "/users/:Username",
+  // Validation logic here for request
+  [
+    check("Username", "Username is required").not().isEmpty(),
+    check("Password", "Password is required").not().isEmpty(),
+  ],
+  async (req, res) => {
+    // Check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+    // Extract username and password from request body
+    const { Username, Password } = req.body;
+
+    // Lookup user in the database by username
+    await Users.findOne({ Username: req.body.Username })
+      .then((user) => {
+        if (!user) {
+          // If the user is not found, send a response indicating invalid credentials
+          return res.status(400).send("Invalid username or password");
+        }
+
+        // Compare the provided password with the hashed password stored in the database
+        if (!user.validatePassword(Password)) {
+          // If passwords don't match, send a response indicating invalid credentials
+          return res.status(400).send("Invalid username or password");
+        }
+
+        // If username and password are valid, generate a JWT token
+        const token = generateJWTToken(user);
+
+        // Return the user and token in the response
+        res.status(200).json({ user, token });
+      })
+      .catch((error) => {
+        // Handle any errors that occur during the database lookup
+        console.error(error);
+        res.status(500).send("Error: " + error);
+      });
+  }
+);
 
 //CREATE (New user account, allow users to register)
 /* Expect JSON in this format
@@ -185,37 +233,36 @@ app.post(
     // check the validation object for errors
     let errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
+    if (errors.isEmpty()) {
+      let hashedPassword = Users.hashPassword(req.body.Password);
+      await Users.findOne({ Username: req.body.Username })
+        .then((user) => {
+          if (user) {
+            return res.status(400).send(req.body.Username + "already exists");
+          } else {
+            Users.create({
+              Name: req.body.Name,
+              Username: req.body.Username,
+              Password: hashedPassword,
+              Email: req.body.Email,
+              Birthday: req.body.Birthday,
+            })
+              .then((user) => {
+                res.status(201).json(user);
+              })
+              .catch((error) => {
+                console.error(error);
+                res.status(500).send("Error:" + error);
+              });
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          res.status(500).send("Error: " + error);
+        });
+    } else {
       return res.status(422).json({ errors: errors.array() });
     }
-
-    let hashedPassword = Users.hashPassword(req.body.Password);
-    await Users.findOne({ Username: req.body.Username }) //Search to see if a user with the requested username already exists
-      .then((user) => {
-        if (user) {
-          //if the user is found, send a response that it already exists
-          return res.status(400).send(req.body.Username + "already exists");
-        } else {
-          Users.create({
-            Name: req.body.Name,
-            Username: req.body.Username,
-            Password: hashedPassword,
-            Email: req.body.Email,
-            Birthday: req.body.Birthday,
-          })
-            .then((user) => {
-              res.status(201).json(user);
-            })
-            .catch((error) => {
-              console.error(error);
-              res.status(500).send("Error:" + error);
-            });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).send("Error: " + error);
-      });
   }
 );
 
